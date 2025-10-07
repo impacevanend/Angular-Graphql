@@ -1,25 +1,24 @@
 import { gql, TypedDocumentNode } from 'apollo-angular';
 import { GetPost, GetPosts, GetPostVariables } from './posts.types';
+import { POST_TABLE_FIELDS_FRAGMENT } from './posts.fragments';
 
-const GET_POSTS: TypedDocumentNode<GetPosts, unknown> = gql<GetPosts, unknown>`
+const GET_POSTS = gql<GetPosts, unknown>`
   query MyQuery {
     allPosts {
-      id
-      title
-      views
+      ...PostTableFields
     }
   }
+    ${POST_TABLE_FIELDS_FRAGMENT}
 `;
 
-const GET_POST: TypedDocumentNode<GetPost, GetPostVariables> = gql<GetPost, GetPostVariables>`
+const GET_POST = gql<GetPost, GetPostVariables>`
   query MyQuery($id: ID!) {
     Post(id: $id) {
-      id
-      title
-      views
+      ...PostTableFields
       comment
     }
   }
+    ${POST_TABLE_FIELDS_FRAGMENT}
 `;
 
 export {GET_POST, GET_POSTS}

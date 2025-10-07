@@ -3,51 +3,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { Subscription } from 'rxjs';
-//import { GET_POST, GET_POSTS } from '../../graphql/posts.queries';
-//import { GetPost, GetPosts } from '../../graphql/posts.types';
+import { GET_POST, GET_POSTS } from '../../graphql/posts.queries';
+import { GetPost, GetPosts } from '../../graphql/posts.types';
 
 
-type Post = {
-  id: string
-  title: string
-  views: number
-  comment: string
-}
 
-type GetPost = {
-  Post: Post
-}
 
-type GetPostVariables = {
-  id: string
-}
 
-type TablePost = Omit<Post, 'comment'>;
-
-type GetPosts = {
-  allPosts: TablePost[]
-}
-
-const GET_POSTS = gql<GetPosts, unknown>`
-  query MyQuery {
-    allPosts {
-      id
-      title
-      views
-    }
-  }
-`;
-
-const GET_POST = gql<GetPost, GetPostVariables>`
-  query MyQuery($id: ID!) {
-    Post(id: $id) {
-      id
-      title
-      views
-      comment
-    }
-  }
-`;
 
 
 

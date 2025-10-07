@@ -1,0 +1,30 @@
+<p-table *ngIf="posts.length > 0" [value]="posts" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template #header>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Views</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-post>
+    <tr>
+      <td>{{ post.id }}</td>
+      <td>{{ post.title }}</td>
+      <td>{{ post.views }}</td>
+      <td>
+        <div>
+          <p-button label="Details" (onClick)="getPost(post.id)"></p-button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<div >
+  <p-button label="Refresh" (onClick)="refresh()"></p-button>
+</div>
+
+<p-progressSpinner *ngIf="loading"  ariaLabel="loading" />
+
+
